@@ -7,8 +7,9 @@ import { fetchPet } from '../api/fetchPet';
 
 // Components
 import Carousel from './Carousel';
+import { ErrorBoundary } from './ErrorBoundary';
 
-export const Details = () => {
+const Details = () => {
   const { id } = useParams();
   const results = useQuery(['details', id], fetchPet);
 
@@ -27,10 +28,18 @@ export const Details = () => {
       <Carousel images={pet.images} />
       <div>
         <h1>{pet.name}</h1>
-        <h2>{`${pet.animal} - ${pet.breed} - ${pet.city} - ${pet.state}`}</h2>
+        <h2>{pet.animal - pet.breed - pet.city - pet.state}</h2>
         <button>Adopt {pet.name}</button>
         <p>{pet.description}</p>
       </div>
     </div>
   );
 };
+
+export default function DetailsWithErrorBoundary(props) {
+  return (
+    <ErrorBoundary>
+      <Details {...props} />
+    </ErrorBoundary>
+  );
+}

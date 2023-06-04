@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // Components
 import { SearchParams } from './components/SearchParams';
-import { Details } from './components/Details';
+import DetailsWithErrorBoundary from './components/Details';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,7 +24,7 @@ const App = () => (
           <Link to="/">Adopt Me!</Link>
         </header>
         <Routes>
-          <Route path="/details/:id" element={<Details />} />
+          <Route path="/details/:id" element={<DetailsWithErrorBoundary />} />
           <Route path="/" element={<SearchParams />} />
         </Routes>
       </QueryClientProvider>
